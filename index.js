@@ -125,6 +125,25 @@ app.post("/register", async (req, res) => {
 
   //calculate
 
+ 
+
+  app.post("/calculate", async (req, res) => {
+    const { Annual_investment, Total_Year, Annual_rate } = req.body;
+    try {
+      const Total_Maturity_Value = Annual_investment * [(((1+Annual_rate) ^Total_Year)-1)/Annual_rate]
+      console.log(Total_Maturity_Value)
+      res.send(Total_Maturity_Value)
+      // res.sendStatus(200).send(Total_Maturity_Value)
+      
+
+
+
+    } catch (error) {
+      res.send({ massege: "something went wrong" });
+    }
+  });
+
+
 
 
 app.listen(process.env.port,async ()=>{
