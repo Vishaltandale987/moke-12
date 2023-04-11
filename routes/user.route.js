@@ -18,7 +18,7 @@ UserRouter.get("/", async (req, res) => {
 //register
 
 UserRouter.post("/register", async (req, res) => {
-  const { name, email, password, avatar, age, gender } = req.body;
+  const {  email, password } = req.body;
   let logindata = await UserModel.find({ email: email })
   try {
     if (logindata.length !== 0) {
@@ -35,7 +35,7 @@ UserRouter.post("/register", async (req, res) => {
       }
 
       else {
-        const user = new UserModel({ name, email, password: hash, avatar, age, gender });
+        const user = new UserModel({  email, password: hash });
         await user.save();
         res.send({ massege: "New user register" });
       }
